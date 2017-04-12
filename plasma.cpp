@@ -32,20 +32,6 @@ void setPixel(BackBuffer *bb, int x, int y, Color c) {
     bb->memory[y*bb->width + x] = c;
 }
 
-float square(float x) {
-    return x * x;
-}
-
-float clamp(float x, float lo, float hi) {
-    if (x < lo) return lo;
-    if (x > hi) return hi;
-    return x;
-}
-
-float clamp01(float x) {
-    return clamp(x, 0.0f, 1.0f);
-}
-
 Color makeColor(float r, float g, float b) {
     assert(r >= 0.0f && r <= 1.0f);
     assert(g >= 0.0f && g <= 1.0f);
@@ -152,14 +138,14 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         return 1;
     }
 
-    int windowWidth = 800;
-    int windowHeight = 600;
+    int windowWidth = 400;
+    int windowHeight = 400;
 
     RECT clientRect = { 0, 0, windowWidth, windowHeight };
     DWORD windowStyle = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
     AdjustWindowRect(&clientRect, windowStyle, NULL);
     HWND hWnd = CreateWindowEx(NULL, wc.lpszClassName, "Plasma", windowStyle,
-                               300, 0,
+                               300, 100,
                                clientRect.right - clientRect.left,
                                clientRect.bottom - clientRect.top,
                                NULL, NULL, hInstance, NULL);
